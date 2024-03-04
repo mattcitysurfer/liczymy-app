@@ -12,7 +12,8 @@ Add bootstrap + basic styling - DONE
 Add graphic on top
 
 Deployment on GitHub pages - DONE
-Change DNS on domain Liczymy.edu.pl - IN PROGRESS
+
+Change DNS on domain Liczymy.edu.pl - DONE
 
 Buttons/input focus flow to use keyboard only + disable for null in result
 
