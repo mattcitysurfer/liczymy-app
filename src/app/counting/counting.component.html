@@ -1,43 +1,48 @@
 <div class="container mt-3">
-    <div class="row">
-        <div class="col-md-2 offset-md-5">
-            <h2 class="mb-3 text-center">{{firstNumber}} {{displayedMathOperator}} {{secondNumber}} =</h2>
-            
-            <div class="d-flex justify-content-center mb-3">
-                <input [(ngModel)]="userResult" type="number" class="form-control" style="width: 90%;">
-            </div>
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
 
-            <div class="mb-3">
-                <input [(ngModel)]="levelSelected" type="range" class="form-range" step="10" min="10" max="100" id="customRange">
-                <label for="customRange" class="form-label">{{levelSelected}}</label>
-            </div>
+      <h2 class="mb-3 text-center">{{firstNumber}} {{displayedMathOperator}} {{secondNumber}} =</h2>
 
-            <div class="mb-3">
-                <div class="form-check">
-                    <input [(ngModel)]="operationSelected" type="radio" class="form-check-input" name="operation" value="ADD" id="add" checked>
-                    <label class="form-check-label" for="add">dodawanie</label>
-                </div>
-                <div class="form-check">
-                    <input [(ngModel)]="operationSelected" type="radio" class="form-check-input" name="operation" value="SUBTRACT" id="subtract">
-                    <label class="form-check-label" for="subtract">odejmowanie</label>
-                </div>
-                <div class="form-check">
-                    <input [(ngModel)]="operationSelected" type="radio" class="form-check-input" name="operation" value="MULTIPLY" id="multiply">
-                    <label class="form-check-label" for="multiply">mnożenie</label>
-                </div>
-                <div class="form-check">
-                    <input [(ngModel)]="operationSelected" type="radio" class="form-check-input" name="operation" value="DIVIDE" id="divide">
-                    <label class="form-check-label" for="divide">dzielenie</label>
-                </div>
-            </div>
+      <div class="d-flex justify-content-center mb-3">
+        <input [(ngModel)]="userResult" type="number" class="form-control" style="width: 50%;">
+      </div>
 
-            <div class="d-flex justify-content-center mb-3">
-                <button (click)="checkAnswer()" class="btn btn-primary me-2">Sprawdź</button>
-                <button (click)="nextExample()" class="btn btn-secondary">Nowy</button>
-            </div>
-
-            <h3 class="mt-3 text-center">{{feedbackMessage}}</h3>
-
+      <div class="mb-3 d-flex flex-column align-items-center">
+        <div class="d-flex w-50 justify-content-center mb-2">
+          <button (click)="checkAnswer()" class="btn btn-primary w-100">Sprawdź</button>
         </div>
+        <div class="d-flex w-50 justify-content-center">
+          <button (click)="nextExample()" class="btn btn-secondary w-100">Nowy</button>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex align-items-center">
+        <input [(ngModel)]="levelSelected" type="range" class="form-range me-2" step="10" min="10" max="100">
+        <label class="form-label mb-0">{{levelSelected}}</label>
+      </div>
+
+      <div class="mb-3">
+        <div class="form-check">
+          <input [(ngModel)]="operationSelected" type="radio" class="form-check-input" name="operation" value="ADD" id="add" checked>
+          <label class="form-check-label" for="add">dodawanie</label>
+        </div>
+        <div class="form-check">
+          <input [(ngModel)]="operationSelected" type="radio" class="form-check-input" name="operation" value="SUBTRACT" id="subtract">
+          <label class="form-check-label" for="subtract">odejmowanie</label>
+        </div>
+        <div class="form-check">
+          <input [(ngModel)]="operationSelected" type="radio" class="form-check-input" name="operation" value="MULTIPLY" id="multiply">
+          <label class="form-check-label" for="multiply">mnożenie</label>
+        </div>
+        <div class="form-check">
+          <input [(ngModel)]="operationSelected" type="radio" class="form-check-input" name="operation" value="DIVIDE" id="divide">
+          <label class="form-check-label" for="divide">dzielenie</label>
+        </div>
+      </div>
+
+      <h3 class="mt-3 text-center">{{feedbackMessage}}</h3>
+
     </div>
+  </div>
 </div>

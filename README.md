@@ -7,11 +7,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Save configurations in localStorage - DONE
 
-Add bootstrap + basic styling
+Add bootstrap + basic styling - DONE
+
 Add graphic on top
 
-Deployment on GitHub pages
-Change DNS on domain Liczymy.edu.pl
+Deployment on GitHub pages - DONE
+Change DNS on domain Liczymy.edu.pl - IN PROGRESS
 
 Buttons/input focus flow to use keyboard only + disable for null in result
 
@@ -22,3 +23,11 @@ History module
 Scoring?
 
 Selected level MIN and MAX - algorythms changes
+
+
+## Deploy
+git checkout -b gh-pages
+ng build --output-path docs --base-href /liczymy/
+git add docs                                     
+git commit -m "GitHub Pages deployment preparation"
+git push -u origin gh-pages
