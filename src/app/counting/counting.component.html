@@ -5,7 +5,7 @@
       <h2 class="mb-3 text-center">{{firstNumber}} {{displayedMathOperator}} {{secondNumber}} =</h2>
 
       <div class="d-flex justify-content-center mb-3">
-        <input [(ngModel)]="userResult" type="number" class="form-control" style="width: 50%;">
+        <input [(ngModel)]="userResult" type="number" pattern="\d*" class="form-control" style="width: 50%;" autofocus #userResultInput>
       </div>
 
       <div class="mb-3 d-flex flex-column align-items-center">

@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
-import { Configurations } from '../models/configurations';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-counting',
   templateUrl: './counting.component.html',
   styleUrls: ['./counting.component.css']
 })
-export class CountingComponent {  
+export class CountingComponent {
+  @ViewChild('userResultInput')
+  userResultInput!: ElementRef;
+
   levelSelected: number = 10;
   operationSelected: string = "ADD";
 
@@ -36,13 +38,14 @@ export class CountingComponent {
     this.userResult = null;
     this.feedbackMessage = null;
     this.saveConfigurations();
+    this.userResultInput.nativeElement.focus();
   }
 
   private generateNumbers() {
     if (this.levelSelected <= 1) {
       throw new Error('Maximum sum must be greater than 1 to get two positive numbers.');
     }
-  
+
     let randoms = this.generateRandoms();
     let random1 = randoms[0];
     let random2 = randoms[1];
