@@ -29,8 +29,6 @@ Selected level MIN and MAX - algorythms changes
 ## Deploy
 git checkout gh-pages
 
-git pull origin main
-
 ng build --output-path docs
 
 git add docs

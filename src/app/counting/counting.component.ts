@@ -17,28 +17,29 @@ export class CountingComponent {
   result: number = 0;
 
   userResult: number | null = null;
-  feedbackMessage: string  | null = null;
   displayedMathOperator: string = "";
+  displayedIconPath: string = "";
 
   ngOnInit(): void {
     this.loadConfigurations();
     this.generateNumbers();
+    this.changeIcon('question');
   }
 
   checkAnswer() {
     if(this.result === this.userResult) {
-      this.feedbackMessage = 'Poprawna odpowiedź';
+      this.changeIcon('correct');
     } else {
-      this.feedbackMessage = 'Niepoprawna odpowiedź';
+      this.changeIcon('incorrect');
     }
   }
 
   nextExample() {
     this.generateNumbers();
     this.userResult = null;
-    this.feedbackMessage = null;
     this.saveConfigurations();
     this.userResultInput.nativeElement.focus();
+    this.changeIcon('question');
   }
 
   private generateNumbers() {
@@ -106,6 +107,10 @@ export class CountingComponent {
         "= " +
         this.result + " "
       );
+  }
+
+  private changeIcon(iconName: string) {
+    this.displayedIconPath = `/assets/img/icon-${iconName}.png`;
   }
 
   private loadConfigurations() {
