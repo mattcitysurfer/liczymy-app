@@ -2,26 +2,23 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## TO DO:
 
-## Code scaffolding
+Save configurations in localStorage - DONE
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Add bootstrap + basic styling
+Add graphic on top
 
-## Build
+Deployment on GitHub pages
+Change DNS on domain Liczymy.edu.pl
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Buttons/input focus flow to use keyboard only + disable for null in result
 
-## Running unit tests
+Refactoring: Enums? Constants? Classes with model? 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+History module
 
-## Running end-to-end tests
+Scoring?
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Selected level MIN and MAX - algorythms changes
