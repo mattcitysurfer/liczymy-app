@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class CountingComponent {
   levalSelected: number = 10;
+  operationSelected: string = "ADD";
+  mathOperator = "+"
 
   firstNumber: number = 0;
   secondNumber: number = 0;
@@ -39,8 +41,19 @@ export class CountingComponent {
       throw new Error('Maximum sum must be greater than 1 to get two positive numbers.');
     }
   
-    this.firstNumber = Math.floor(Math.random() * (this.levalSelected - 1)) + 1;
-    this.secondNumber = Math.floor(Math.random() * (this.levalSelected - this.firstNumber));
-    this.result = this.firstNumber + this.secondNumber;
+    let random1 = Math.floor(Math.random() * (this.levalSelected - 1)) + 1;
+    let random2 = Math.floor(Math.random() * (this.levalSelected - this.firstNumber));
+
+    if (this.operationSelected === "ADD") {
+      this.firstNumber = random1;
+      this.secondNumber = random2;
+      this.result = random1 + random2;
+      this.mathOperator = "+";
+    } else if (this.operationSelected === "SUBTRACT") {
+      this.firstNumber = random1 + random2;
+      this.secondNumber = random1;
+      this.result = random2;
+      this.mathOperator = "-";
+    }
   }
 }
