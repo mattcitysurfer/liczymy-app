@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class CountingComponent {
   levalSelected: number = 10;
   operationSelected: string = "ADD";
-  mathOperator = "+"
+  mathOperator = "+";
 
   firstNumber: number = 0;
   secondNumber: number = 0;
@@ -42,7 +42,8 @@ export class CountingComponent {
     }
   
     let random1 = Math.floor(Math.random() * (this.levalSelected - 1)) + 1;
-    let random2 = Math.floor(Math.random() * (this.levalSelected - this.firstNumber));
+    let random2 = Math.floor(Math.random() * (this.levalSelected - random1));
+
 
     if (this.operationSelected === "ADD") {
       this.firstNumber = random1;
@@ -55,5 +56,7 @@ export class CountingComponent {
       this.result = random2;
       this.mathOperator = "-";
     }
+
+    console.log(this.result);
   }
 }
