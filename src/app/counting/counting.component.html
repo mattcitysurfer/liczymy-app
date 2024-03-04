@@ -1,5 +1,11 @@
 <h2>{{firstNumber}} + {{secondNumber}}</h2>
-<input type="number" [(ngModel)]="userResult">
+<input [(ngModel)]="userResult" type="number" >
+
+<br>
+<input [(ngModel)]="levalSelected" type="range" step="5" min="5" max="100">
+<output>{{levalSelected}}</output>
+
+<br>
 <button (click)="checkResult()">Sprawdź</button>
 <button (click)="newNumbers()">Nowy</button>
 <h3>{{feedbackMessage}}</h3>
