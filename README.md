@@ -27,7 +27,13 @@ Selected level MIN and MAX - algorythms changes
 
 ## Deploy
 git checkout gh-pages
-ng build --output-path docs --base-href /liczymy/
+
+git pull origin main
+
+ng build --output-path docs
+
 git add docs
+
 git commit -m "GitHub Pages deployment preparation"
+
 git push -u origin gh-pages
