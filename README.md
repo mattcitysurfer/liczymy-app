@@ -9,7 +9,7 @@ Save configurations in localStorage - DONE
 
 Add bootstrap + basic styling - DONE
 
-Add graphic on top
+Add icons on top - DONE
 
 Deployment on GitHub pages - DONE
 
@@ -29,7 +29,11 @@ Selected level MIN and MAX - algorythms changes
 ## Deploy
 git checkout gh-pages
 
+git pull origin main
+
 ng build --output-path docs
+
+git restore docs/CNAME
 
 git add docs
 
