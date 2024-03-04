@@ -1,8 +1,8 @@
-<h2>{{firstNumber}} {{mathOperator}} {{secondNumber}}</h2>
+<h2>{{firstNumber}} {{mathOperator}} {{secondNumber}} =</h2>
 <input [(ngModel)]="userResult" type="number" >
 
-<br>
-<input [(ngModel)]="levalSelected" type="range" step="5" min="5" max="100">
+<br><br>
+<input [(ngModel)]="levalSelected" type="range" step="10" min="10" max="100">
 <output>{{levalSelected}}</output>
 
 <br>
@@ -13,13 +13,13 @@
 <label for="subtract">odejmowanie</label>
 
 <br>
-<input [(ngModel)]="operationSelected" type="radio" name="operation" value="MULTIPLY" disabled="true">
+<input [(ngModel)]="operationSelected" type="radio" name="operation" value="MULTIPLY">
 <label for="multiply">mnożenie</label>
 <br>
-<input [(ngModel)]="operationSelected" type="radio" name="operation" value="DIVIDE" disabled="true">
+<input [(ngModel)]="operationSelected" type="radio" name="operation" value="DIVIDE">
 <label for="divide">dzielenie</label>
-<br>
 
+<br><br>
 <button (click)="checkResult()">Sprawdź</button>
 <button (click)="newNumbers()">Nowy</button>
 
