@@ -139,7 +139,7 @@ export class CountingComponent {
       secondNumber: this.secondNumber,
       result: this.result,
       userResult: this.userResult,
-      newAppointmentDate: new Date()
+      date: new Date()
     }
 
     this.historyItems.push(historyItem);
