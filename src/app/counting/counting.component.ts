@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { HistoryItem } from '../models/history-item';
 
 @Component({
   selector: 'app-counting',
@@ -20,6 +21,8 @@ export class CountingComponent {
   displayedMathOperator: string = "";
   displayedIconPath: string = "";
 
+  historyItems: HistoryItem[] = [];
+
   ngOnInit(): void {
     this.loadConfigurations();
     this.generateNumbers();
@@ -32,6 +35,9 @@ export class CountingComponent {
     } else {
       this.changeIcon('incorrect');
     }
+
+    this.saveHistoryItem();
+    this.saveHistory();
   }
 
   nextExample() {
@@ -52,25 +58,13 @@ export class CountingComponent {
     let random2 = randoms[1];
 
     if (this.operationSelected === "ADD") {
-      this.firstNumber = random1;
-      this.secondNumber = random2;
-      this.result = random1 + random2;
-      this.displayedMathOperator = "+";
+      this.setUpForAdd(random1, random2);
     } else if (this.operationSelected === "SUBTRACT") {
-      this.firstNumber = random1 + random2;
-      this.secondNumber = random1;
-      this.result = random2;
-      this.displayedMathOperator = "-";
+      this.setUpForSubtract(random1, random2);
     } else if (this.operationSelected === "MULTIPLY") {
-      this.firstNumber = random1;
-      this.secondNumber = random2;
-      this.result = random1 * random2;
-      this.displayedMathOperator = "*";
+      this.setUpForMultiply(random1, random2);
     } else if (this.operationSelected === "DIVIDE") {
-      this.firstNumber = random1 * random2;
-      this.secondNumber = random1;
-      this.result = random2;
-      this.displayedMathOperator = "/";
+      this.setUpForDivide(random1, random2);
     } else {
       throw new Error('Operation out of the scope.');
     }
@@ -99,6 +93,34 @@ export class CountingComponent {
     return Date.now() % 2 == 0 ? [random1, random2] : [random2, random1];
   }
 
+  private setUpForAdd(random1: number, random2: number) {
+    this.firstNumber = random1;
+    this.secondNumber = random2;
+    this.result = random1 + random2;
+    this.displayedMathOperator = "+";
+  }
+
+  private setUpForSubtract(random1: number, random2: number) {
+    this.firstNumber = random1 + random2;
+    this.secondNumber = random1;
+    this.result = random2;
+    this.displayedMathOperator = "-";
+  }
+
+  private setUpForMultiply(random1: number, random2: number) {
+    this.firstNumber = random1;
+    this.secondNumber = random2;
+    this.result = random1 * random2;
+    this.displayedMathOperator = "*";
+  }
+
+  private setUpForDivide(random1: number, random2: number) {
+    this.firstNumber = random1 * random2;
+    this.secondNumber = random1;
+    this.result = random2;
+    this.displayedMathOperator = "/";
+  }
+
   private getCurrentOperation(): string {
     return (
         this.firstNumber + " " +
@@ -109,8 +131,26 @@ export class CountingComponent {
       );
   }
 
+  private saveHistoryItem(): void {
+    let historyItem: HistoryItem = {
+      levelSelected: this.levelSelected,
+      operationSelected: this.operationSelected,
+      firstNumber: this.firstNumber,
+      secondNumber: this.secondNumber,
+      result: this.result,
+      userResult: this.userResult,
+      newAppointmentDate: new Date()
+    }
+
+    this.historyItems.push(historyItem);
+  }
+
   private changeIcon(iconName: string) {
     this.displayedIconPath = `/assets/img/icon-${iconName}.png`;
+  }
+
+  private saveHistory() {
+    localStorage.setItem("history", JSON.stringify(this.historyItems));
   }
 
   private loadConfigurations() {
