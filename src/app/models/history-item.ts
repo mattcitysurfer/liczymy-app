@@ -5,7 +5,8 @@ export interface HistoryItem {
     firstNumber: number;
     secondNumber: number;
     result: number;
-
     userResult: number | null;
+    isCorrect: boolean;
+
     date: Date;
 }

@@ -4,7 +4,7 @@
       <div class="text-center">
         <img class="mb-3" [src]="displayedIconPath">
       </div>
-      <h2 class="mb-3 text-center">{{firstNumber}} {{displayedMathOperator}} {{secondNumber}} =</h2>
+      <h2 class="mb-3 text-center">{{getCurrentMathOperation()}}</h2>
 
       <div class="d-flex justify-content-center mb-3">
         <input [(ngModel)]="userResult" type="number" pattern="\d*" class="form-control" style="width: 50%;" autofocus #userResultInput>
@@ -12,7 +12,7 @@
 
       <div class="mb-3 d-flex flex-column align-items-center">
         <div class="d-flex w-50 justify-content-center mb-2">
-          <button (click)="checkAnswer()" class="btn btn-primary w-100">Sprawdź</button>
+          <button (click)="checkAnswer()" class="btn btn-primary w-100" [disabled]="isCheckButtonDisabled">Sprawdź</button>
         </div>
         <div class="d-flex w-50 justify-content-center">
           <button (click)="nextExample()" class="btn btn-secondary w-100">Nowy</button>
@@ -40,6 +40,28 @@
         <div class="form-check">
           <input [(ngModel)]="operationSelected" type="radio" class="form-check-input" name="operation" value="DIVIDE" id="divide">
           <label class="form-check-label" for="divide">dzielenie</label>
+        </div>
+      </div>
+      <div class="mt-4">
+        <div class="form-check form-switch">
+          <input class="form-check-input" [(ngModel)]="displayHistory" type="checkbox" role="switch" id="displayHistory">
+          <label class="form-check-label" for="displayHistory">Pokaż historię</label>
+        </div>
+        <div *ngIf="displayHistory">
+          <div class="mt-3">
+            <button (click)="cleanHistory()" [disabled]="historyItems.length < 1" class="btn btn-danger w-100">Wyczyść</button>
+          </div>
+          <table class="table table-striped mt-2">
+            <tbody>
+            <tr *ngFor="let historyItem of historyItems">
+              <td><small>{{historyItem.date | date: 'dd.MM.yyyy'}}</small></td>
+              <td>{{getMathOperation(historyItem)}}</td>
+              <td>{{historyItem.userResult}}</td>
+              <td>{{ historyItem.isCorrect ? '&#10003;' : '&#10007;' }}</td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
