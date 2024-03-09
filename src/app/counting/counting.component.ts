@@ -71,7 +71,7 @@ export class CountingComponent {
       case "ADD": return "+"
       case "SUBTRACT": return "-"
       case "MULTIPLY": return "*"
-      case "DIVIDE": return "/"
+      case "DIVIDE": return ":"
 
       default: return "?"
     }

@@ -15,15 +15,21 @@ Deployment on GitHub pages - DONE
 
 Change DNS on domain Liczymy.edu.pl - DONE
 
-Buttons/input focus flow to use keyboard only + disable for null in result
+History module - DONE
 
-Refactoring: Enums? Constants? Classes with model? 
+Buttons/input focus flow to use keyboard only + disable for null in result - IN PROGRESS
 
-History module
+Footer - technologies and author
+
+BuyCoffee.to - link
+
+Refactoring: Enums? Constants? Classes with model? Functions in place of this.methods?
 
 Scoring?
 
-Selected level MIN and MAX - algorythms changes
+Selected level MIN and MAX - algorythms changes?
+
+Better styling
 
 
 ## Deploy
