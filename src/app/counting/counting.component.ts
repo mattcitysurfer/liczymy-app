@@ -16,9 +16,12 @@ export class CountingComponent {
   operationSelected: string = "ADD";
   displayHistory: boolean = false;
 
-  firstNumber: number = 0;
-  secondNumber: number = 0;
-  result: number = 0;
+  currentItem: HistoryItem =
+    {
+      levelSelected: 0,
+      operationSelected: '',
+      date: new Date()
+    }
 
   userResult: number | null = null;
   displayedIconPath: string = "";
@@ -27,13 +30,14 @@ export class CountingComponent {
 
   ngOnInit(): void {
     this.loadConfigurations();
+    this.prepareNewItem();
     this.loadHistory();
     this.generateNumbers();
     this.changeIcon('question');
   }
 
   checkAnswer() {
-    if(this.result === this.userResult) {
+    if(this.currentItem.result === this.userResult) {
       this.changeIcon('correct');
       this.isCheckButtonDisabled = true;
     } else {
@@ -45,6 +49,7 @@ export class CountingComponent {
   }
 
   nextExample() {
+    this.prepareNewItem();
     this.generateNumbers();
     this.userResult = null;
     this.saveConfigurations();
@@ -63,7 +68,8 @@ export class CountingComponent {
   }
 
   getCurrentMathOperation() {
-    return this.firstNumber + " " + this.toOperator(this.operationSelected) + " " + this.secondNumber + " ="
+    //get from history item
+    return this.currentItem.firstNumber + " " + this.toOperator(this.currentItem.operationSelected) + " " + this.currentItem.secondNumber + " ="
   }
 
   toOperator(operationSelected: string) {
@@ -98,7 +104,7 @@ export class CountingComponent {
       throw new Error('Operation out of the scope.');
     }
 
-    console.log(this.getCurrentOperation());
+    console.log(this.getCurrentMathOperation());
   }
 
   private generateRandoms():number[] {
@@ -123,50 +129,34 @@ export class CountingComponent {
   }
 
   private setUpForAdd(random1: number, random2: number) {
-    this.firstNumber = random1;
-    this.secondNumber = random2;
-    this.result = random1 + random2;
+    this.currentItem.firstNumber = random1;
+    this.currentItem.secondNumber = random2;
+    this.currentItem.result = random1 + random2;
   }
 
   private setUpForSubtract(random1: number, random2: number) {
-    this.firstNumber = random1 + random2;
-    this.secondNumber = random1;
-    this.result = random2;
+    this.currentItem.firstNumber = random1 + random2;
+    this.currentItem.secondNumber = random1;
+    this.currentItem.result = random2;
   }
 
   private setUpForMultiply(random1: number, random2: number) {
-    this.firstNumber = random1;
-    this.secondNumber = random2;
-    this.result = random1 * random2;
+    this.currentItem.firstNumber = random1;
+    this.currentItem.secondNumber = random2;
+    this.currentItem.result = random1 * random2;
   }
 
   private setUpForDivide(random1: number, random2: number) {
-    this.firstNumber = random1 * random2;
-    this.secondNumber = random1;
-    this.result = random2;
-  }
-
-  private getCurrentOperation(): string {
-    return (
-        this.firstNumber + " " +
-        this.toOperator(this.operationSelected) + " " +
-        this.secondNumber + " " +
-        "= " +
-        this.result + " "
-      );
+    this.currentItem.firstNumber = random1 * random2;
+    this.currentItem.secondNumber = random1;
+    this.currentItem.result = random2;
   }
 
   private saveHistoryItem(): void {
-    let historyItem: HistoryItem = {
-      levelSelected: this.levelSelected,
-      operationSelected: this.operationSelected,
-      firstNumber: this.firstNumber,
-      secondNumber: this.secondNumber,
-      result: this.result,
-      userResult: this.userResult,
-      isCorrect: this.result == this.userResult,
-      date: new Date()
-    }
+    let historyItem = {... this.currentItem};
+
+    historyItem.userResult = this.userResult;
+    historyItem.isCorrect = this.currentItem.result == this.userResult
 
     this.historyItems.unshift(historyItem);
   }
@@ -204,5 +194,14 @@ export class CountingComponent {
       displayHistory: this.displayHistory
     }
     localStorage.setItem("configurations", JSON.stringify(configurations));
+  }
+
+  private prepareNewItem() {
+    this.currentItem =
+      {
+      levelSelected: this.levelSelected,
+      operationSelected: this.operationSelected,
+      date: new Date()
+    }
   }
 }
